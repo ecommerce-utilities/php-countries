@@ -4,6 +4,7 @@
 !/tests
 !/.gitattributes
 !/.gitignore
+!/.travis.yml
 !/README.md
 !/LICENSE
 !/composer.json
