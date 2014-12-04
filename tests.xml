@@ -4,7 +4,7 @@
 		 strict="true"
 		 verbose="true">
 	<testsuites>
-		<testsuite name="EbayTests">
+		<testsuite name="Tests">
 			<directory>tests</directory>
 		</testsuite>
 	</testsuites>
