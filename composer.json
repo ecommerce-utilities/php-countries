@@ -1,0 +1,21 @@
+{
+	"name": "rkr/countries",
+	"description": "A library to help translating country-names into various standards and to text",
+	"type": "library",
+	"require": {
+		"php": ">= 5.3"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~3.7@stable"
+	},
+	"autoload": {
+		"psr-4": {
+			"Kir\\CountryCodes\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Kir\\CountryCodes\\": ["src/", "tests/"]
+		}
+	}
+}
