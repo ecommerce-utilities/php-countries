@@ -2,7 +2,6 @@
 namespace Kir\CountryCodes;
 
 use Kir\CountryCodes\Helpers\AbstractCultureAware;
-use Kir\CountryCodes\Helpers\CultureFormatterTrait;
 
 class IcuCountryNameLocator extends AbstractCultureAware {
 	/** @var array|null */
