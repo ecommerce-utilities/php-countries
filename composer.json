@@ -1,5 +1,6 @@
 {
 	"name": "rkr/countries",
+	"license": "MIT",
 	"description": "A library to help translating country-names into various standards and to text",
 	"type": "library",
 	"require": {
