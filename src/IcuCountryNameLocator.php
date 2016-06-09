@@ -2,17 +2,11 @@
 namespace Kir\CountryCodes;
 
 class IcuCountryNameLocator {
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $languageCode;
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $countryCode;
-	/**
-	 * @var array|null
-	 */
+	/** @var array|null */
 	private $list = null;
 
 	/**
@@ -34,6 +28,26 @@ class IcuCountryNameLocator {
 			return $list[$countryCode];
 		}
 		throw new CountryNotFoundException(sprintf("Country %s not found in %s", $countryCode, $this->getCulture()));
+	}
+
+	/**
+	 * @param array $filter
+	 * @return string[] A key-value array with all countries known. Key = ISO2-Code, value = name of the country.
+	 */
+	public function getCountries(array $filter = null) {
+		$list = $this->getCachedList();
+		$result = [];
+		if($filter !== null) {
+			$filter = array_map('strtoupper', $filter);
+			#if(in_array('EUROPE', $filter)) {
+			#}
+			foreach($filter as $code) {
+				if(array_key_exists($code, $list)) {
+					$result[$code] = $list[$code];
+				}
+			}
+		}
+		return $list;
 	}
 
 	/**
