@@ -39,8 +39,6 @@ class IcuCountryNameLocator {
 		$result = [];
 		if($filter !== null) {
 			$filter = array_map('strtoupper', $filter);
-			#if(in_array('EUROPE', $filter)) {
-			#}
 			foreach($filter as $code) {
 				if(array_key_exists($code, $list)) {
 					$result[$code] = $list[$code];
