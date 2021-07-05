@@ -1,0 +1,1 @@
+<?php require __DIR__.'/../ru/icu-countries.php';
