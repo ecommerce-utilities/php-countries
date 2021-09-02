@@ -23,7 +23,6 @@ class EuCountryProvider extends AbstractCultureAware implements IteratorAggregat
 		'IE',
 		'ES',
 		'FR',
-		'GB',
 		'GR',
 		'HR',
 		'IT',
