@@ -30,9 +30,9 @@ class IcuCountryListProvider extends AbstractCultureAware implements IteratorAgg
 	}
 
 	/**
-	 * @return Traversable
+	 * @return ArrayIterator
 	 */
-	public function getIterator() {
+	public function getIterator(): ArrayIterator {
 		return new ArrayIterator($this->getCountries());
 	}
 
