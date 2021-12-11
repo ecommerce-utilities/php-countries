@@ -6,12 +6,15 @@ use IteratorAggregate;
 use Kir\CountryCodes\Helpers\AbstractCultureAware;
 use Traversable;
 
+/**
+ * @implements IteratorAggregate<string, string>
+ */
 class EuCountryProvider extends AbstractCultureAware implements IteratorAggregate {
 	/** @var IcuCountryListProvider */
-	private $provider = null;
+	private $provider;
 
 	/**
-	 * @var string
+	 * @var array<int, string>
 	 */
 	private $codes = [
 		'BE',
@@ -67,9 +70,9 @@ class EuCountryProvider extends AbstractCultureAware implements IteratorAggregat
 	}
 
 	/**
-	 * @return Traversable
+	 * @return ArrayIterator<string, string>
 	 */
-	public function getIterator() {
+	public function getIterator(): ArrayIterator {
 		return new ArrayIterator($this->getList());
 	}
 }

@@ -4,8 +4,8 @@ namespace Kir\CountryCodes;
 use Kir\CountryCodes\Helpers\AbstractCultureAware;
 
 class IcuCountryNameLocator extends AbstractCultureAware {
-	/** @var array|null */
-	private $provider = null;
+	/** @var IcuCountryListProvider */
+	private $provider;
 
 	/**
 	 * @param string $languageCode

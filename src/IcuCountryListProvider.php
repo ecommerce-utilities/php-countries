@@ -6,13 +6,16 @@ use IteratorAggregate;
 use Kir\CountryCodes\Helpers\AbstractCultureAware;
 use Traversable;
 
+/**
+ * @implements IteratorAggregate<string, string>
+ */
 class IcuCountryListProvider extends AbstractCultureAware implements IteratorAggregate {
-	/** @var array|null */
-	private $list = null;
+	/** @var null|array<string, string> */
+	private $list;
 
 	/**
-	 * @param array $filter
-	 * @return string[] A key-value array with all countries known. Key = ISO2-Code, value = name of the country.
+	 * @param array<int, string> $filter
+	 * @return array<string, string> A key-value array with all countries known. Key = ISO2-Code, value = name of the country.
 	 */
 	public function getCountries(array $filter = null) {
 		$list = $this->getCachedList();
@@ -30,14 +33,14 @@ class IcuCountryListProvider extends AbstractCultureAware implements IteratorAgg
 	}
 
 	/**
-	 * @return ArrayIterator
+	 * @return ArrayIterator<string, string>
 	 */
 	public function getIterator(): ArrayIterator {
 		return new ArrayIterator($this->getCountries());
 	}
 
 	/**
-	 * @return array
+	 * @return array<string, string>
 	 * @throws SourceNotFoundException
 	 */
 	private function getCachedList() {
@@ -48,22 +51,25 @@ class IcuCountryListProvider extends AbstractCultureAware implements IteratorAgg
 	}
 
 	/**
-	 * @return array
+	 * @return array<string, string>
 	 * @throws SourceNotFoundException
 	 */
-	private function getList() {
+	private function getList(): array {
 		$result = $this->incl(__DIR__."/../codes/en/icu-countries.php");
 		$list = $this->incl(__DIR__."/../codes/{$this->getLanguageCode()}/icu-countries.php");
 		$result = array_merge($result, $list);
 		$list = $this->incl(__DIR__."/../codes/{$this->getCulture()}/icu-countries.php");
 		return array_merge($result, $list);
 	}
-
+	
+	/**
+	 * @param string $filename
+	 * @return array<string, string>
+	 */
 	private function incl($filename) {
-		/** @noinspection PhpIncludeInspection */
-		$list = @include $filename;
+		$list = include $filename;
 		if(!is_array($list)) {
-			return array();
+			return [];
 		}
 		return $list;
 	}
